@@ -2,7 +2,7 @@ module Exercise
   module Arrays
     class << self
       def replace(array)
-        max = array[0]
+        max = array.first
 
         array.each { |el| max = el if el > max }
 
