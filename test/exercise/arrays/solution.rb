@@ -9,23 +9,18 @@ module Exercise
         array.map { |el| el.positive? ? max : el }
       end
 
-      def search(array, query)
-        low = 0
-        high = array.size - 1
+      def search(array, query, low = 0, high = array.size - 1)
+        return -1 if low > high
 
-        while low <= high
-          mid = low + ((high - low) / 2)
+        mid = low + ((high - low) / 2)
 
-          if array[mid] < query
-            low = mid + 1
-          elsif array[mid] > query
-            high = mid - 1
-          end
+        return mid if array[mid] == query
 
-          return mid if array[mid] == query
+        if array[mid] > query
+          search(array, query, low, mid - 1)
+        else
+          search(array, query, mid + 1, high)
         end
-
-        -1
       end
     end
   end
