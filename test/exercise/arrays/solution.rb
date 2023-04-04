@@ -10,7 +10,7 @@ module Exercise
       end
 
       def search(array, query, low = 0, high = array.size - 1)
-        return -1 if low > high
+        return -1 if low > high || (query < array[low] || query > array[high])
 
         mid = low + ((high - low) / 2)
 
