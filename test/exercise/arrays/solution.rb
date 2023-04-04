@@ -16,11 +16,7 @@ module Exercise
 
         return mid if array[mid] == query
 
-        if array[mid] > query
-          search(array, query, low, mid - 1)
-        else
-          search(array, query, mid + 1, high)
-        end
+        array[mid] > query ? search(array, query, low, mid - 1) : search(array, query, mid + 1, high)
       end
     end
   end
