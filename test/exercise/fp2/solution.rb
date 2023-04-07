@@ -20,7 +20,21 @@ module Exercise
       end
 
       # Написать свою функцию my_map
-      def my_map; end
+      def my_map
+        return unless block_given?
+
+        result = MyArray.new
+        i = 0
+
+        while i < size
+          element = yield self[i]
+          result << element
+
+          i += 1
+        end
+
+        result
+      end
 
       # Написать свою функцию my_compact
       def my_compact; end
