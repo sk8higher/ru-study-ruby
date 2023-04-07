@@ -37,7 +37,20 @@ module Exercise
       end
 
       # Написать свою функцию my_compact
-      def my_compact; end
+      def my_compact
+        result = MyArray.new
+        i = 0
+
+        while i < size
+          element = self[i]
+
+          result << element unless element.nil?
+
+          i += 1
+        end
+
+        result
+      end
 
       # Написать свою функцию my_reduce
       def my_reduce; end
