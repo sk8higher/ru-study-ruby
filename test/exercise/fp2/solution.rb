@@ -15,20 +15,10 @@ module Exercise
       end
 
       # Написать свою функцию my_map
-      def my_map
-        return unless block_given?
+      def my_map(&block)
+        result = init(self).my_reduce([]) { |acc, el| acc << block.call(el) }
 
-        result = MyArray.new
-        i = 0
-
-        while i < size
-          element = yield self[i]
-          result << element
-
-          i += 1
-        end
-
-        result
+        init(result)
       end
 
       # Написать свою функцию my_compact
