@@ -48,16 +48,22 @@ module Exercise
       end
 
       # Написать свою функцию my_reduce
-      def my_reduce(initial_value = nil)
-        accumulator = initial_value || self[0]
-        i = initial_value.nil? ? 1 : 0
+      # def my_reduce(initial_value = nil)
+      #   accumulator = initial_value || self[0]
+      #   i = initial_value.nil? ? 1 : 0
 
-        while i < size
-          accumulator = yield(accumulator, self[i])
-          i += 1
-        end
+      #   while i < size
+      #     accumulator = yield(accumulator, self[i])
+      #     i += 1
+      #   end
 
-        accumulator
+      #   accumulator
+      # end
+
+      def my_reduce(acc = nil, &block)
+        return acc if empty?
+
+        acc.nil? ? MyArray.new(self[1..]).my_reduce(first, &block) : MyArray.new(self[1..]).my_reduce(block.call(acc, first), &block)
       end
     end
   end
