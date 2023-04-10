@@ -9,7 +9,7 @@ module Exercise
         return self if empty?
 
         block.call(first)
-        init(self[1..]).my_each(&block)
+        init(drop(1)).my_each(&block)
 
         self
       end
@@ -63,7 +63,7 @@ module Exercise
       def my_reduce(acc = nil, &block)
         return acc if empty?
 
-        acc.nil? ? init(self[1..]).my_reduce(first, &block) : init(self[1..]).my_reduce(block.call(acc, first), &block)
+        acc.nil? ? init(drop(1)).my_reduce(first, &block) : init(drop(1)).my_reduce(block.call(acc, first), &block)
       end
 
       private
