@@ -5,16 +5,11 @@ module Exercise
       # Использовать свои написанные функции для реализации следующих - можно.
 
       # Написать свою функцию my_each
-      def my_each
-        return unless block_given?
+      def my_each(&block)
+        return self if empty?
 
-        i = 0
-
-        while i < size
-          yield self[i]
-
-          i += 1
-        end
+        block.call(first)
+        MyArray.new(self[1..]).my_each(&block)
 
         self
       end
