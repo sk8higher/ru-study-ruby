@@ -23,18 +23,9 @@ module Exercise
 
       # Написать свою функцию my_compact
       def my_compact
-        result = MyArray.new
-        i = 0
+        result = init(self).my_reduce([]) { |acc, el| el.nil? ? acc : acc << el }
 
-        while i < size
-          element = self[i]
-
-          result << element unless element.nil?
-
-          i += 1
-        end
-
-        result
+        init(result)
       end
 
       # Написать свою функцию my_reduce
