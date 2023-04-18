@@ -32,7 +32,9 @@ module Exercise
       def my_reduce(acc = nil, &block)
         return acc if empty?
 
-        acc.nil? ? init(drop(1)).my_reduce(first, &block) : init(drop(1)).my_reduce(block.call(acc, first), &block)
+        head, *tail = self
+
+        acc.nil? ? init(tail).my_reduce(head, &block) : init(tail).my_reduce(block.call(acc, head), &block)
       end
 
       private
